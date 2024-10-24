@@ -69,10 +69,14 @@
 
       function edit(i) {
         let newItem = prompt("enter new item here");
+       if(newItem == ''){
+        alert('Input Something Please')
+       }else{
         todoArray.splice(i, 1, newItem);
         updateLocalStorage();
         allTodo()
         displayTodo();
+       }
       }
 
       function deleteItem(i) {
