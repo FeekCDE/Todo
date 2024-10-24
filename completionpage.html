@@ -13,14 +13,12 @@
       function alldone() {
         let alldonee = localStorage.getItem("todo1");
         let allIDid = JSON.parse(alldonee);
-        console.log(allIDid)
-        displayarea.innerHTML = ' '
+        console.log(allIDid);
+        displayarea.innerHTML = " ";
 
         for (let i = 0; i < allIDid.length; i++) {
-             displayarea.innerHTML += `<p>${allIDid[i]}<p>`
+          displayarea.innerHTML += `<p>${allIDid[i]}<p>`;
         }
-       
-   
       }
     </script>
   </body>

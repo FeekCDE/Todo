@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+  }
+  body {
+    /* font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif; */
+    background-color: beige;
+  }
+  .cont {
+    margin: 20px auto;
+    width: 50%;
+    border: 1px dashed grey;
+    background-color: beige;
+    min-height: 90dvh;
+    position: relative;
+  }
+  .cont > h2 {
+    margin: 10px;
+    text-align: center;
+    background-color: goldenrod;
+    position: relative;
+    padding: 5px;
+  }
+  input {
+    border: none;
+    outline: none;
+    height: 2.2rem;
+    margin: 10px;
+    border-radius: 5px;
+    width: 85%;
+  }
+  input::placeholder {
+    padding: 10px;
+  }
+  button {
+    height: 1.8rem;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    font: 1.2rem;
+    margin: 10px;
+  }
+  .sbt-btn {
+    background-color: goldenrod;
+  }
+  p {
+    width: 98%;
+    margin: 10px;
+    font-weight: 200;
+    font-size: 1rem;
+  }
+
+  footer {
+    background-color: wheat;
+    position: static;
+    text-align: center;
+  }
+  a {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    text-decoration: none;
+    display: block;
+    margin: 10px;
+  }
+  .clr {
+    background-color: goldenrod;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+  }
+  @media screen and (max-width: 768px) {
+    .cont {
+      width: 90%;
+    }
+
+    input {
+      display: block;
+      margin: 10px;
+      width: 95%;
+    }
+
+    button {
+      width: 20%;
+    }
+    footer{
+        font-size: 0.5rem;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .cont {
+      width: 95%;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    input {
+      margin: 0px 10px;
+    }
+
+    button {
+      font-size: 0.8rem;
+      width: fit-content;
+    }
+
+    footer {
+        font-size: 0.6rem;
+    }
+  }

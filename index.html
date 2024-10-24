@@ -4,108 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo Listing by Feek</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0%;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-      }
-      .cont {
-        margin: 20px auto;
-        width: 50%;
-        border: 1px dashed grey;
-        background-color: beige;
-        min-height: 90dvh;
-        position: relative;
-      }
-      .cont > h2 {
-        margin: 10px;
-        text-align: center;
-        background-color: goldenrod;
-        position: relative;
-      }
-      input {
-        border: none;
-        outline: none;
-        height: 1.8rem;
-        margin: 10px;
-        width: 85%;
-      }
-      button {
-        height: 1.8rem;
-        border-radius: 5px;
-        border: none;
-        padding: 5px;
-        font: 1.2rem;
-        font-family: "Courier New", Courier, monospace;
-      }
-      .sbt-btn {
-        background-color: gold;
-      }
-      .dlt {
-        background-color: red;
-        margin: 10px;
-      }
-      footer {
-        background-color: wheat;
-        position: static;
-        text-align: center;
-      }
-      a {
-        position: absolute;
-        bottom: 1%;
-      }
-      .clr {
-        background-color: chocolate;
-        position: absolute;
-        bottom: 1%;
-        left: 0.5%;
-      }
-      @media screen and (max-width: 768px) {
-        .cont {
-          width: 90%;
-        }
-
-        input {
-          width: 100%;
-        }
-
-        button {
-          width: 30%;
-        }
-      }
-      @media screen and (max-width: 480px) {
-        .cont {
-          width: 95%;
-        }
-
-        h2 {
-          font-size: 1.5rem;
-        }
-
-        input {
-          width: 100%;
-        }
-
-        button {
-          font-size: 1rem;
-          width: 40%;
-        }
-
-        footer {
-          font-size: 0.9rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./index.css">
   </head>
 
   <body onload="getTodo()">
     <div class="cont">
-      <h2>My Todo List</h2>
+      <h2>My ToDo List</h2>
       <input
         type="text"
         placeholder="Type your ToDo here"
@@ -113,17 +17,14 @@
         autofocus
       />
       <button onclick="submitTodo()" class="sbt-btn">Submit</button>
-      <p id="listt"></p>
-      <button onclick="deleteFirst()" class="dlt">Delete first</button>
-      <button onclick="deleteLast()" class="dlt">Delete last</button>
-      <button onclick="clearactivities()" class="clr">Clear the list</button>
-      <a href="completionpage.html" onclick="sendTodo()"
-        >Click here to check all you've done today</a
-      >
+      <p id="listt" style="cursor: grab"></p>
+      <button onclick="clearactivities()" class="clr">Clear list</button>
+      <a href="completionpage.html" onclick="sendTodo()">Recycled ToDos</a>
     </div>
     <footer>
       <p>Designed with love from McFeek 2024©</p>
     </footer>
+
     <script>
       let todoArray = [];
       function submitTodo() {
@@ -143,8 +44,8 @@
         localStorage.setItem("todo", localTodo);
       }
       function allTodo() {
-        let localTodo = JSON.stringify(todoArray);
-        localStorage.setItem("todo1", localTodo);
+        let localTodo2 = JSON.stringify(todoArray);
+        localStorage.setItem("todo1", localTodo2);
       }
       function getTodo() {
         let localTod = localStorage.getItem("todo");
@@ -161,7 +62,7 @@
         for (let i = 0; i < todoArray.length; i++) {
           listt.innerHTML += `${i + 1}. ${
             todoArray[i]
-          }<span onclick="deleteItem(${i})" style="cursor:pointer;">🚮</span> <span onclick="edit(${i})">📝</span><br>`;
+          }<span onclick="deleteItem(${i})" style="cursor:pointer; font-size:0.6rem"> 🗑️ </span> <span onclick="edit(${i})" style="cursor:pointer; font-size:0.6rem">📝</span><br>`;
         }
         console.log(todoArray);
       }
@@ -170,6 +71,7 @@
         let newItem = prompt("enter new item here");
         todoArray.splice(i, 1, newItem);
         updateLocalStorage();
+        allTodo()
         displayTodo();
       }
 
@@ -183,41 +85,15 @@
         }
       }
 
-      function deleteFirst() {
-        if (todoArray.length == 0) {
-          listt.innerHTML =
-            '<p style="color:red;">Plese there is nothing to delete here</p>';
-        } else {
-          if (
-            confirm("Are you sure you want to delete the first item?") == true
-          ) {
-            todoArray.shift();
-            updateLocalStorage();
-            displayTodo();
-          } else {
-            displayTodo();
-          }
-        }
-      }
-      function deleteLast() {
-        if (todoArray.length == 0) {
-          listt.innerHTML =
-            '<p style="color: red;">Plese there is nothing to delete here</p>';
-        } else {
-          if (
-            confirm("Are you sure you want to delete the last item?") == true
-          ) {
-            todoArray.shift();
-            updateLocalStorage();
-            displayTodo();
-          } else {
-            displayTodo();
-          }
-        }
-      }
-
       function clearactivities() {
-        localStorage.clear(todo);
+        if (confirm('You are about to clear all items on your list')== true){
+            localStorage.removeItem('todo');
+            todoArray.splice(0,todoArray.length);   
+            displayTodo();
+        }
+        else{
+            displayTodo()
+        }
       }
     </script>
   </body>
