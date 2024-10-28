@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo Listing by Feek</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./index.css" />
   </head>
 
   <body onload="getTodo()">
@@ -62,21 +62,23 @@
         for (let i = 0; i < todoArray.length; i++) {
           listt.innerHTML += `${i + 1}. ${
             todoArray[i]
-          }<span onclick="deleteItem(${i})" style="cursor:pointer; font-size:0.6rem"> 🗑️ </span> <span onclick="edit(${i})" style="cursor:pointer; font-size:0.6rem">📝</span><br>`;
+          }<span onclick="edit(${i})" style="cursor:pointer; font-size:0.6rem">📝</span> <span onclick="deleteItem(${i})" style="cursor:pointer; font-size:0.6rem"> 🗑️ </span> <br>`;
         }
         console.log(todoArray);
       }
 
       function edit(i) {
         let newItem = prompt("enter new item here");
-       if(newItem == ''){
-        alert('Input Something Please')
-       }else{
-        todoArray.splice(i, 1, newItem);
-        updateLocalStorage();
-        allTodo()
-        displayTodo();
-       }
+        if (newItem == null) {
+          displayTodo();
+        } else if (newItem == "") {
+          alert("Input Something Please");
+        }else {
+          todoArray.splice(i, 1, newItem);
+          updateLocalStorage();
+          allTodo();
+          displayTodo();
+        }
       }
 
       function deleteItem(i) {
@@ -90,13 +92,12 @@
       }
 
       function clearactivities() {
-        if (confirm('You are about to clear all items on your list')== true){
-            localStorage.removeItem('todo');
-            todoArray.splice(0,todoArray.length);   
-            displayTodo();
-        }
-        else{
-            displayTodo()
+        if (confirm("You are about to clear all items on your list") == true) {
+          localStorage.removeItem("todo");
+          todoArray.splice(0, todoArray.length);
+          displayTodo();
+        } else {
+          displayTodo();
         }
       }
     </script>
